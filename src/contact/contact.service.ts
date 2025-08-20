@@ -14,4 +14,8 @@ export class ContactService {
     const contact = this.contactRepo.create(data);
     return this.contactRepo.save(contact);
   }
+
+  async findAll() {
+  return this.contactRepo.find({ order: { id: 'DESC' } });
+}
 }

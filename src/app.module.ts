@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContactModule } from './contact/contact.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ContactModule } from './contact/contact.module';
       synchronize: true, // ❗only in dev (auto creates tables)
     }),
     ContactModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
