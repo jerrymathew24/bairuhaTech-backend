@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Contact } from './contact.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Contact } from "./contact.entity";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class ContactService {
@@ -16,6 +16,14 @@ export class ContactService {
   }
 
   async findAll() {
-  return this.contactRepo.find({ order: { id: 'DESC' } });
+    return this.contactRepo.find({ order: { id: 'DESC' } });
+  }
+
+  // ✅ Delete by ID
+async delete(id: number): Promise<boolean> {
+  const result = await this.contactRepo.delete(id);
+  // `affected` might be undefined, so we check safely
+  return (result.affected ?? 0) > 0;
 }
+
 }
